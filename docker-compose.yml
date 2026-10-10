@@ -1,0 +1,16 @@
+services:
+  api:
+    build:
+      context: .
+      target: production
+    image: controle-automoveis-api
+    ports:
+      - '${API_PORT:-3000}:3000'
+    restart: unless-stopped
+
+  # Executa a suíte de testes: docker compose run --rm test
+  test:
+    build:
+      context: .
+      target: test
+    profiles: ['test']
